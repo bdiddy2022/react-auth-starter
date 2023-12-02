@@ -19,8 +19,8 @@ export const LogInPage = () => {
             {errorMessage && <div className='fail'>{errorMessage}</div>}
             <input 
                 value={emailValue}
-                onChange={e => setEmailValue(e.target.value)}/>
-                placeholder="someone@gmail.com" 
+                onChange={e => setEmailValue(e.target.value)}
+                placeholder="email" />
             <input 
                 type="password"
                 value={passwordValue}

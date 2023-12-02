@@ -10,18 +10,18 @@ export const SignUpPage = () => {
 
     const history = useHistory();
 
-    const onLoginClicked = async () => {
-        alert('Login method not yet implemented');
+    const onSignUpClicked = async () => {
+        alert('Sign Up method not yet implemented');
     }
 
     return (
         <div className='content-container'>
-            <h1>Log In</h1>
+            <h1>Sign Up</h1>
             {errorMessage && <div className='fail'>{errorMessage}</div>}
             <input 
                 value={emailValue}
                 onChange={e => setEmailValue(e.target.value)}
-                placeholder="someone@gmail.com"  />
+                placeholder="email"  />
             <input 
                 type="password"
                 value={passwordValue}
@@ -31,12 +31,11 @@ export const SignUpPage = () => {
                 type="password"
                 value={confirmPasswordValue}
                 onChange={e => setConfirmPasswordValue(e.target.value)} 
-                placeholder="password"/>
+                placeholder="confirm password"/>
             <button 
                 disabled={!emailValue || !passwordValue || passwordValue !== confirmPasswordValue}
-                onClick={onLoginClicked}>Sign Up</button>
-            <button onClick={() => history.push('/forgot-password')}>Forgot Password?</button>
-            <button onClick={() => history.push('/signup')}>Don't have an account? Sign Up</button>
+                onClick={onSignUpClicked}>Sign Up</button>
+            <button onClick={() => history.push('/login')}>Already have an account? Log In</button>
         </div>
     );
 }

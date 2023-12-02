@@ -18,6 +18,7 @@ export const SignUpPage = () => {
         <div className='content-container'>
             <h1>Sign Up</h1>
             {errorMessage && <div className='fail'>{errorMessage}</div>}
+            
             <input 
                 value={emailValue}
                 onChange={e => setEmailValue(e.target.value)}
@@ -32,7 +33,8 @@ export const SignUpPage = () => {
                 value={confirmPasswordValue}
                 onChange={e => setConfirmPasswordValue(e.target.value)} 
                 placeholder="confirm password"/>
-                <hr/>
+            <hr/>
+
             <button 
                 disabled={!emailValue || !passwordValue || passwordValue !== confirmPasswordValue}
                 onClick={onSignUpClicked}>Sign Up</button>

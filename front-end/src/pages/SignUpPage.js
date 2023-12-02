@@ -32,6 +32,7 @@ export const SignUpPage = () => {
                 value={confirmPasswordValue}
                 onChange={e => setConfirmPasswordValue(e.target.value)} 
                 placeholder="confirm password"/>
+                <hr/>
             <button 
                 disabled={!emailValue || !passwordValue || passwordValue !== confirmPasswordValue}
                 onClick={onSignUpClicked}>Sign Up</button>

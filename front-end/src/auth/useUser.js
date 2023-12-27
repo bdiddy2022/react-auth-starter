@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useToken } from './useToken';
 
 export const useUser = () => {
-    const [token] = useToken();
+    const [token, setToken] = useToken();
 
     const getPayloadFromToken = token => {
         const encodedPayload = token.split('.')[1];
@@ -10,7 +10,7 @@ export const useUser = () => {
     }
 
     const [user, setUser] = useState(() => {
-        if(!token) return null;
+        if(!token) {return null;}
         return getPayloadFromToken(token);
     });
 
@@ -20,7 +20,7 @@ export const useUser = () => {
         } else {
             setUser(getPayloadFromToken(token));
         }
-    }, token);
+    }, [token, setToken]);
 
     return user;
 }

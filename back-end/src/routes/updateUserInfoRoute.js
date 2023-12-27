@@ -9,7 +9,7 @@ export const updateUserInfoRoute = {
         const { authorization } = req.headers;
         const { userId } = req.params;
 
-        const updates = ({
+        const updates = (({
             favoriteFood, 
             hairColor, 
             bio,
@@ -17,10 +17,10 @@ export const updateUserInfoRoute = {
             favoriteFood,
             hairColor,
             bio,
-        })(req.body);
+        }))(req.body);
 
         if(!authorization){
-            return res.status(401).json({ message: 'No authorization header sent'});
+            return res.status(401).json({ message: 'No authorization header sent' });
         }
 
         const token = authorization.split(' ')[1];
@@ -30,19 +30,19 @@ export const updateUserInfoRoute = {
 
             const { id } = decoded;
 
-            if (id !== userId) return res.status(403).json({message: "Not allowed to update that user's data"});
+            if (id !== userId) return res.status(403).json({ message: "Not allowed to update that user\'s data" });
 
             const db = getDbConnection('react-auth-db');
-            const result = await db.collecgtion('users').findOneAndUpdate(
+            const result = await db.collection('users').findOneAndUpdate(
                 { _id: ObjectID(id) },
-                { $set: {info: updates } },
+                { $set: { info: updates } },
                 { returnOriginal: false },
             );
 
             const { email, isVerified, info } = result.value;
 
-            jwt.sign({ id, email, isVerified, info }, process.env.JWT_SECRET, { expiresIn: '2d'}, (err, token) => {
-                if(err) {
+            jwt.sign({ id, email, isVerified, info }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
+                if (err) {
                     return res.status(200).json(err);
                 }
                 res.status(200).json({ token });

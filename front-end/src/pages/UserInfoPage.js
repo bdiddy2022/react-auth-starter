@@ -58,9 +58,8 @@ export const UserInfoPage = () => {
     }
 
     const logOut = () => {
-        // We'll want to log the user out here
-        // and send them to the "login page"
-        alert('Log out functionality not implemented yet');
+        localStorage.removeItem('token');
+        history.push('/login');
     }
 
     const resetValues = () => {
@@ -75,12 +74,15 @@ export const UserInfoPage = () => {
             <h1>Info for {email}</h1>
             {showSuccessMessage && <div className="success">Successfully saved user data!</div>}
             {showErrorMessage && <div className="fail">Uh oh... something went wrong and we couldn't save changes</div>}
-            <label>
-                Favorite Food:
+            
+                <label>Favorite Food: {info.favoriteFood}</label>
                 <input
-                    onChange={e => setFavoriteFood(e.target.value)}
-                    value={favoriteFood} />
-            </label>
+                onChange={e => setFavoriteFood(e.target.value)}
+                value={favoriteFood}
+                method='text'>
+
+                        
+           </input>
             <label>
                 Hair Color:
                 <input
